@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Compute Pension</title>
+<link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="./bootstrap/css/bootstrap-theme.min.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<h1>Compound Interest Calculator</h1>
+<br>
+<div class="form">
+    <form action="/" method="post">
+        <div class="form-group">
+            <label for="inputName">Name</label>
+            <input type="text" name="name" class="form-control" id="inputName">
+        </div>
+        <div class="form-group">
+            <label for="inputAge">Age</label>
+            <input type="number" name="age" class="form-control" id="inputAge">
+        </div>
+        <div class="form-group">
+            <label for="inputCapital">Starting Capital</label>
+            <input type="number" name="capital" class="form-control" id="inputCapital">
+        </div>
+        <div class="form-group">
+            <label for="inputAdd">Monthly Add</label>
+            <input type="number" name="add" class="form-control" id="inputAdd">
+        </div>
+        <div class="form-group">
+            <label for="inputIncrease">Expected Increase Income</label>
+            <input type="number" name="increase" class="form-control" id="inputIncrease" placeholder="Expected percentual increase of amount invested.">
+        </div>
+        <div class="form-group">
+            <label for="inputPension">Pension Age</label>
+            <input type="number" name="pension" class="form-control" id="inputPension">
+        </div>
+        <div class="form-group">
+            <label for="inputPessimistic">Pessimistic Interest Rate</label>
+            <input type="text" name="pessimistic" class="form-control" id="inputPessimistic" placeholder="For example 1.04 = 4% and 1.20 = 20%">
+        </div>
+        <div class="form-group">
+            <label for="inputAverage">Average Interest Rate</label>
+            <input type="text" name="average" class="form-control" id="inputAverage" placeholder="For example 1.04 = 4% and 1.20 = 20%">
+        </div>
+        <div class="form-group">
+            <label for="inputOptimistic">Optimistic Interest Rate</label>
+            <input type="text" name="optimistic" class="form-control" id="inputOptimistic" placeholder="For example 1.04 = 4% and 1.20 = 20%">
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+<script src="./jQuery/jquery.min.js"></script>
+<script src="./bootstrap/js/bootstrap.min.js"></script>
+</body>
+</html>                                		

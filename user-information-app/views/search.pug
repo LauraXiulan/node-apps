@@ -1,0 +1,19 @@
+html
+	head
+		script(src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js")
+		script(src="search.js")
+		link(rel = "stylesheet" href = "style.css" type = "text/css")
+	body
+		div.container
+			section#content1
+				form(method = "post" action="/search") 
+					h1 Search
+					input(type = "text" id = "user" name="search" placeholder = "Search Users")
+					//- datalist#mylist
+					//- 	option(value = "")
+					input(type = "submit" id = "search" value="Submit")
+					p#result
+					br
+					a(class = "button" href = "/") Full User List
+					a(class = "button" href = "/add") Create Account
+				br

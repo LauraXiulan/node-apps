@@ -1,0 +1,21 @@
+html
+  head
+    link(rel = "stylesheet" type = "text/css" href = "/bootstrap/css/bootstrap.min.css")
+    link(rel = "stylesheet" type = "text/css" href = "style.css")
+    script(src="jquery/jquery.min.js")
+    script(src="bootstrap/js/bootstrap.min.js")
+  body
+    div.form
+      h2 Message form
+      p Type a nice message here!
+      br
+      form(action = "/" method = "post")
+        div.form-group
+          label(for = "title") Title:
+            input(type = "text" class = "form-control" id = "title" name = "title")
+        div.form-group
+          label(for = "comment") Comment:
+            textarea(class = "form-control" id = "comment" name = "text")
+            br
+            input(type = "submit" value = "Post Message")
+    a(class = "button" href = "/result") See all messages

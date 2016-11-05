@@ -1,0 +1,13 @@
+html
+	head
+		link(rel = "stylesheet" href = "style.css" type = "text/css")
+	body
+		div.container
+			section#content
+				h1 User List
+				ul
+					each thing in data
+						li #{thing.firstname} #{thing.lastname}: #{thing.email}
+				br
+				a(class = "button" href = "/search") Search Users
+				a(class = "button" href = "/add") Create Account

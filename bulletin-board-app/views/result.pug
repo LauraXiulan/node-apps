@@ -1,0 +1,15 @@
+html
+	head
+		link(rel = "stylesheet" type = "text/css" href = "style.css")
+	body
+		div.box
+			h1 Messages
+			img(src = "lightning.jpg")
+			br
+			each thing in data
+				h2 #{thing.title}
+				p #{thing.body}
+				hr
+				br
+		a(class = "button" href = "/") Go back to message form
+		br

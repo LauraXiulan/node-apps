@@ -1,0 +1,35 @@
+.form {
+	margin: 20px;
+}
+
+h1 {
+	text-align: center;
+	font-family: "Comic Sans MS", cursive, sans-serif;
+}
+
+body#resultpage {
+	background-image: url("bg.jpg");
+	background-repeat: no-repeat; 
+}
+
+#title {
+	display: block;
+	border: 1px solid #000;
+	padding: 10px;
+	margin: 0 50px;
+	text-align: center;
+	color: white;
+	background-color: lightslategrey;
+	font-size: 30px;
+}
+
+div.result {
+	display: block;
+	text-align: center;
+	background-color: aliceblue;
+	border: 1px solid #000;
+	padding: 10px;
+	margin: 0 50px;
+	font-size: 14px;
+	font-family: "Comic Sans MS", cursive, sans-serif;
+}

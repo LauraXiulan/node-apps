@@ -1,0 +1,14 @@
+html
+	head
+		link(rel="stylesheet" href="style.css" type="text/css")
+	body#resultpage
+		h1#title Compound Interest Calculator
+		div.result
+			h1 Your Pension Result
+				each thing in pension
+					p Welcome #{thing.name} to our advanced pension planner!
+					p You are starting with €#{thing.startcapital} and add a monthly amount of €#{thing.monthly}.
+					p This amount increases yearly with #{thing.increase}%
+					p When you retire at age #{thing.pensionage} you will have the following:
+					li #{thing.random}
+					br
