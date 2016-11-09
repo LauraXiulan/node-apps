@@ -79,7 +79,6 @@ app.get('/createpost', (req, res) => {
 })
 
 app.post('/createpost', (req, res) => {
-	console.log(req)
 	let resultTitle = req.body.title
 	let resultText = req.body.text
 	Post.create({
@@ -96,7 +95,11 @@ app.get('/posts', (req, res) => {
 
 //See all posts
 app.get('/allposts', (req, res) => {
-	res.send('See all the posts.')
+	Post.findAll({
+		include: [Comment]
+	}).then(posts => {
+		res.render('allposts', {post: posts}) //Find out how to add the comments to the page...!
+	})
 })
 
 //Logout page

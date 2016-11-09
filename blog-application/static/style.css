@@ -9,7 +9,21 @@ body.createpost {
     margin-right: auto;
 }
 
+body.allposts {
+    font-size: 11px;
+    font-family: 'Open Sans', sans-serif;
+    color: black ;
+    text-align: center; 
+    background-color: #FFFBFF;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .createpost h2 {
+    font-size: 22px;
+}
+
+.allposts h2{
     font-size: 22px;
 }
 
@@ -18,7 +32,16 @@ body.createpost {
     font-size: 18px;
 }
 
+.allposts p{
+    margin-top: 15px;
+    font-size: 18px; 
+}
+
 .createpost label {
+    font-size: 16px;
+}
+
+.allposts label{
     font-size: 16px;
 }
 
@@ -72,7 +95,7 @@ body.createpost {
     margin-bottom: 20px;
 }
 
-h1{
+.allposts h1{
     font-size: 30px;
     font-weight: bold;
     margin-top: 5px; 
@@ -89,10 +112,10 @@ a:hover{
     color: #6B6B6B !important ;
 }*/
 
-/*hr {
+.allposts hr {
     width: 70%;
     color: black;
-}*/
+}
 
 #title {
     width: 700px;
