@@ -12,6 +12,12 @@ html
 		if user
 			a(href = '/profile') View profile
 			br
+			a(class = "button" href = "/createpost") Go to message form
+			br
+			a(class = "button" href = "/posts") See all your posts.
+			br
+			a(class = "button" href = "/allposts") See all posts.
+			br
 			a(href = '/logout') Leave Us
 		else
 			form(action = '/login' method = 'post')

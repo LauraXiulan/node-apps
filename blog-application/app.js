@@ -143,7 +143,15 @@ app.post('/createpost', (req, res) => {
 
 //See all user posts
 app.get('/posts', (req, res) => {
-	res.send('Here are all your posts.')
+	let userid = req.session.user.id
+	Post.findAll({
+		where: {
+			userId: userid
+		},
+		include: [Comment]
+	}).then(posts => {
+		res.render('posts', {post: posts})
+	})
 })
 
 //See all posts
@@ -151,6 +159,7 @@ app.get('/allposts', (req, res) => {
 	Post.findAll({
 		include: [Comment]
 	}).then(posts => {
+		console.log(posts)
 		res.render('allposts', {post: posts}) //Find out how to add the comments to the page...!
 	})
 })
@@ -176,6 +185,22 @@ db.sync({force: true}).then(db => {
 		name: 'Laura',
 		email: 'blabla@bla',
 		password: 'banana'
+	})
+	User.create({
+		name: 'Esther',
+		email: 'kitten@cute',
+		password: 'cat'
+	})
+	Post.create({
+		title: 'KING BOB',
+		body: 'SUPER MEGA UKULELE',
+		userId: 1
+	})
+	Comment.create({
+		title: 'Cool',
+		body: 'Your post is funny!',
+		userId: 2,
+		postId: 1
 	})
 })
 
