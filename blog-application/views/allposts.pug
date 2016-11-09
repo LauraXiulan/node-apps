@@ -1,6 +1,17 @@
 html
 	head
 		link(rel = "stylesheet" type = "text/css" href = "style.css")
+		script.
+			$(document).ready(function () {
+				$('#comment').click(function (event) {
+					let comment = {
+						input: $('#comment').val()
+					}
+					$.post('/comment', comment, function(res) {
+						$('#newcomment').append(res.data[i].title + "\n" + res.data[i].text + "<br>")
+					})
+				})
+			})
 	body.allposts
 		div.box
 			h1 Messages
@@ -14,6 +25,16 @@ html
 					h2 #{thing.comments[i].title}
 					p #{thing.comments[i].body}
 				br
+				p#newcomment
+				form(action = "/allposts" method = "post")
+					div.form-group
+						label(for = "title") Title:
+						input(type = "text" class = "form-control" id = "title" name = "title")
+					div.form-group
+						label(for = "comment") Comment:
+						textarea(class = "form-control" id = "comment" name = "text")
+						br
+						input(type = "submit" value = "Post Comment" id = 'comment')
 		a(href = '/profile') View profile
 		br
 		a(class = "button" href = "/createpost") Go back to message form

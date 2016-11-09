@@ -159,9 +159,13 @@ app.get('/allposts', (req, res) => {
 	Post.findAll({
 		include: [Comment]
 	}).then(posts => {
-		console.log(posts)
 		res.render('allposts', {post: posts}) //Find out how to add the comments to the page...!
 	})
+})
+
+app.post('/comment', (req, res) => {
+	console.log(req.body)
+	// res.send({data: input})
 })
 
 //Logout page
@@ -201,6 +205,11 @@ db.sync({force: true}).then(db => {
 		body: 'Your post is funny!',
 		userId: 2,
 		postId: 1
+	})
+	Post.create({
+		title: 'Hello!',
+		body: 'Hey there how are you all doing?',
+		userId: 2
 	})
 })
 
