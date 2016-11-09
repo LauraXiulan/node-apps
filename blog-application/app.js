@@ -1,12 +1,20 @@
 //Import modules
+'use strict'
 const sequelize = require('sequelize')
 const express = require('express')
+const bodyParser = require('body-parser')
 const app = express()
 
 let db = new sequelize('blog', process.env.POSTGRES_USER, process.env.POSTGRES_PASSWORD, {
 	server: 'localhost',
 	dialect: 'postgres'
 })
+
+app.set('view engine', 'pug')
+app.set('views', __dirname + '/views')
+app.use(express.static('static'))
+
+app.use(bodyParser.urlencoded({extended: true}))
 
 //Define database structure
 
@@ -38,26 +46,48 @@ app.get('/ping', (req, res) => {
 	res.send('Pong')
 })
 
+//Homepage
 app.get('/', (req, res) => {
 	res.send('Welcome!')
 })
 
+//Login page
 app.get('/login', (req, res) => {
 	res.send('Login here!')
 })
 
+//Create new user
 app.get('/createuser', (req, res) => {
 	res.send('Create a new account.')
 })
 
+//Create post
+app.get('/createpost', (req, res) => {
+	res.render('createpost')
+})
+
+app.post('/createpost', (req, res) => {
+	console.log(req)
+	let resultTitle = req.body.title
+	let resultText = req.body.text
+	Post.create({
+		title: resultTitle,
+		body: resultText
+	})
+	res.send('Post successfully created!')
+})
+
+//See all user posts
 app.get('/posts', (req, res) => {
 	res.send('Here are all your posts.')
 })
 
+//See all posts
 app.get('/allposts', (req, res) => {
 	res.send('See all the posts.')
 })
 
+//Logout page
 app.get('/logout', (req, res) => {
 	res.send('You are successfully logged out!')
 })
