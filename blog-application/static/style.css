@@ -244,3 +244,68 @@ body.createuser {
     text-shadow: 0 1px 0 rgba(255,255,255,0.5);
     width: 120px;
 }
+
+/*Profile */
+body.profile {
+    padding-top: 10px;
+    text-align: center;
+    background-color: #E9DE50;
+}
+
+.profile h2 {
+    text-align: center;
+    font-size: 32px;
+    text-shadow: 1px 1px purple ;
+    font-style: bold;
+}
+
+#mainimg {
+    width: 400px;
+    height: auto;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.profile h3 {
+    font-style: italic;
+}
+
+#home {
+    float: left;
+}
+
+#logout {
+    float: right;
+}
+
+#container {
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.profile img {
+    width: 150px;
+    height: 150px;
+}
+
+.profile form {
+    padding-top: 100px;
+}
+
+.profile label {
+    font-family: "Comic Sans MS", cursive, sans-serif;
+}
+
+.profile input {
+    border-radius: 30px;
+}
+
+.profile img#lama {
+    width: 600px;
+    height: auto;
+}
+
+.profile a {
+    font-size: 24px;
+}

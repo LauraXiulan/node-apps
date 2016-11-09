@@ -1,0 +1,23 @@
+html
+	head
+		script(src = '/jquery-3.1.1.min.js')
+		script(src = '/custom.js')
+		//- link(href = '/style.css' rel = 'stylesheet' type = 'text/css')
+	body.profile
+		h1 WELCOME!
+		//- br
+		//- img#lama(src = '/lama.jpg')
+		//- br
+		br
+		if user
+			a(href = '/profile') View profile
+			br
+			a(href = '/logout') Leave Us
+		else
+			form(action = '/login' method = 'post')
+				label Email &nbsp;
+				input#email(type = 'email' name = 'email' required)
+				label &nbsp; Password &nbsp;
+				input#password(type = 'password' name = 'password' required)
+				input(type = 'submit' value = 'login' id = 'submit')
+		h2#error-message= message

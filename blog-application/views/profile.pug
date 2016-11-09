@@ -1,0 +1,14 @@
+html
+	head
+		//- link(href = '/style.css' type = 'text/css' rel = 'stylesheet')
+	body.profile
+		div#container
+			h2= user.name
+			img#mainimg(src = '/duck.jpg')
+			h3= user.email
+			br
+			a(class = "button" href = "/") Go back to homepage.
+			a(class = "button" href = "/createpost") Post a message.
+			a(class = "button" href = "/posts") See all your posts.
+			a(class = "button" href = "/allposts") See all posts.
+			a(class = "button" href = "/logout") Logout

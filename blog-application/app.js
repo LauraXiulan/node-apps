@@ -3,6 +3,7 @@
 const sequelize = require('sequelize')
 const express = require('express')
 const bodyParser = require('body-parser')
+const session = require('express-session')
 const app = express()
 
 let db = new sequelize('blog', process.env.POSTGRES_USER, process.env.POSTGRES_PASSWORD, {
@@ -15,6 +16,12 @@ app.set('views', __dirname + '/views')
 app.use(express.static('static'))
 
 app.use(bodyParser.urlencoded({extended: true}))
+
+app.use(session({
+	secret: 'This is secret',
+	resave: true,
+	saveUninitialized: false
+}))
 
 //Define database structure
 
@@ -47,13 +54,59 @@ app.get('/ping', (req, res) => {
 })
 
 //Homepage
+// app.get('/', (req, res) => {
+// 	res.send('Welcome!')
+// })
+
 app.get('/', (req, res) => {
-	res.send('Welcome!')
+	res.render('index', {
+		message: req.query.message,
+		user: req.session.user
+	})
 })
 
 //Login page
 app.get('/login', (req, res) => {
 	res.send('Login here!')
+})
+
+app.post('/login', bodyParser.urlencoded({extended: true}), (req, res) => {
+	if(req.body.email.length === 0) {
+		res.redirect('/?message=' + encodeURIComponent("Please fill out your emailadress."))
+		return
+	}
+	if(req.body.password.length === 0) {
+		res.redirect('/?message=' + encodeURIComponent("Please fill out your password."))
+		return
+	}
+	User.findOne({
+		where: {
+			email: req.body.email
+		}
+	}).then((user) => {
+		if(user !== null && req.body.password === user.password) {
+			req.session.user = user
+			res.redirect('/profile')
+		}
+		else {
+			res.redirect('/?message=' + encodeURIComponent("Invalid email or password."))
+		}
+	}, (err) => {
+		res.redirect('/?message=' + encodeURIComponent("Invalid email or password."))
+	})
+})
+
+//Profile
+app.get('/profile', (req, res) => {
+	let user = req.session.user
+	if(user === undefined) {
+		res.redirect('/?message=' + encodeURIComponent("Please log in to view your profile."))
+	}
+	else {
+		res.render('profile', {
+			user: user
+		})
+	}
 })
 
 //Create new user
@@ -103,14 +156,27 @@ app.get('/allposts', (req, res) => {
 })
 
 //Logout page
-app.get('/logout', (req, res) => {
-	res.send('You are successfully logged out!')
-})
+// app.get('/logout', (req, res) => {
+// 	res.send('You are successfully logged out!')
+// })
 
+app.get('/logout', (req, res) => {
+	req.session.destroy((err) => {
+		if(err) {
+			throw err
+		}
+		res.redirect('/?message=' + encodeURIComponent("Successfully logged out."))
+	})
+})
 //Sync with database
 
 db.sync({force: true}).then(db => {
 	console.log("Synced, yay!")
+	User.create({
+		name: 'Laura',
+		email: 'blabla@bla',
+		password: 'banana'
+	})
 })
 
 //Listen
