@@ -58,7 +58,19 @@ app.get('/login', (req, res) => {
 
 //Create new user
 app.get('/createuser', (req, res) => {
-	res.send('Create a new account.')
+	res.render('createuser')
+})
+
+app.post('/createuser', (req, res) => {
+	let userName = req.body.name
+	let email = req.body.email
+	let pw = req.body.password
+	User.create({
+		name: userName,
+		email: email,
+		password: pw
+	})
+	res.send('Succesfully created profile!')	
 })
 
 //Create post
