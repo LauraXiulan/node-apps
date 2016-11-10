@@ -1,18 +1,40 @@
 html
 	head
-		//- link(href = '/style.css' type = 'text/css' rel = 'stylesheet')
+		link(rel="stylesheet" href="./bootstrap/css/bootstrap.min.css" type="text/css")
+		link(rel="stylesheet" href="sticky-footer-navbar.css" type="text/css")
+		link(rel="stylesheet" href="style.css" type="text/css")
+		script(src="./jquery/jquery.min.js")
+		script(src="./bootstrap/js/bootstrap.min.js")
 	body.profile
-		div#container
+		nav.navbar.navbar-default.navbar-fixed-top
+			div.container
+				div.navbar-header
+					button(type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar")
+						span.sr-only Toggle navigation
+						span.icon-bar
+						span.icon-bar
+						span.icon-bar
+					a.navbar-brand(href="/profile")= user.name
+				div#navbar.collapse.navbar-collapse
+					ul.nav.navbar-nav
+						li
+							a(href="/createpost") Post Message
+						li
+							a(href="/posts") Your Messages
+						li
+							a(href="/allposts") All Messages
+						li
+							a(href="/logout") Logout
+					form.form-inline.float-xs-right(style="margin-top: 7px;")
+						input.form-control(type="text" placeholder="Search")
+						button.btn.btn-outline.success(type="submit") Search
+		div#container(style="text-align: center; margin-top: 100px;")
 			h2= user.name
+			br
 			img#mainimg(src = '/duck.jpg')
+			br
 			h3= user.email
 			br
-			a(class = "button" href = "/") Go back to homepage.
-			br
-			a(class = "button" href = "/createpost") Post a message.
-			br
-			a(class = "button" href = "/posts") See all your posts.
-			br
-			a(class = "button" href = "/allposts") See all posts.
-			br
-			a(class = "button" href = "/logout") Logout
+		footer.footer
+			div.container
+				p.text-muted Place sticky footer content here.

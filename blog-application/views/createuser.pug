@@ -1,7 +1,19 @@
 html
 	head
-		link(rel = "stylesheet" href = "style.css" type = "text/css")
+		link(rel="stylesheet" href="./bootstrap/css/bootstrap.min.css" type="text/css")
+		link(rel="stylesheet" href="sticky-footer-navbar.css" type="text/css")
+		link(rel="stylesheet" href="style.css" type="text/css")
+		script(src="./jquery/jquery.min.js")
+		script(src="./bootstrap/js/bootstrap.min.js")
 	body.createuser
+		nav.navbar.navbar-default.navbar-fixed-top
+				div.navbar-header
+					ul.nav.navbar-nav
+						li
+							a(href="/") Home
+				form.form-inline(style="margin-top: 8px; float: right; margin-right: 50px;")
+					input.form-control(type="text" placeholder="Search")
+					button.btn.btn-outline.success(type="submit") Search
 		div.container
 			section#content2
 				h1 New User
@@ -16,6 +28,6 @@ html
 					input(type = "submit" value = "Create Account")
 					br
 				br
-				a(class = "button" href = "/") Go back to homepage.
-    			br
-    			
+		footer.footer
+			div.container
+				p.text-muted Place sticky footer content here.		

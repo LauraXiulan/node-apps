@@ -1,6 +1,10 @@
 html
 	head
-		link(rel = "stylesheet" type = "text/css" href = "style.css")
+		link(rel="stylesheet" href="./bootstrap/css/bootstrap.min.css" type="text/css")
+		link(rel="stylesheet" href="sticky-footer-navbar.css" type="text/css")
+		link(rel="stylesheet" href="style.css" type="text/css")
+		script(src="./jquery/jquery.min.js")
+		script(src="./bootstrap/js/bootstrap.min.js")
 		script.
 			$(document).ready(function () {
 				$('#comment').click(function (event) {
@@ -13,7 +17,29 @@ html
 				})
 			})
 	body.allposts
-		div.box
+		nav.navbar.navbar-default.navbar-fixed-top
+			div.container
+				div.navbar-header
+					button(type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar")
+						span.sr-only Toggle navigation
+						span.icon-bar
+						span.icon-bar
+						span.icon-bar
+					a.navbar-brand(href="/profile")= user.name
+				div#navbar.collapse.navbar-collapse
+					ul.nav.navbar-nav
+						li
+							a(href="/createpost") Post Message
+						li
+							a(href="/posts") Your Messages
+						li
+							a(href="/allposts") All Messages
+						li
+							a(href="/logout") Logout
+					form.form-inline.float-xs-right(style="margin-top: 7px;")
+						input.form-control(type="text" placeholder="Search")
+						button.btn.btn-outline.success(type="submit") Search
+		div.box(style="margin-top: 100px;")
 			h1 Messages
 			img(src = "lightning.jpg")
 			br
@@ -29,19 +55,15 @@ html
 				form(action = "/allposts" method = "post")
 					div.form-group
 						label(for = "title") Title:
-						input(type = "text" class = "form-control" id = "title" name = "title")
+						input(type = "text" class = "form-control" id = "title1" name = "title")
 					div.form-group
 						label(for = "comment") Comment:
-						textarea(class = "form-control" id = "comment" name = "text")
+						textarea(class = "form-control" id = "comment1" name = "text")
 						br
-						input(type = "submit" value = "Post Comment" id = 'comment')
-		a(href = '/profile') View profile
+						input(type = "submit" value = "Post Comment" id = "commentbtn")
+					br
 		br
-		a(class = "button" href = "/createpost") Go back to message form
 		br
-		a(class = "button" href = "/") Go back to homepage.
-		br
-		a(class = "button" href = "/posts") See all your posts.
-		br
-		a(class = "button" href = "/logout") Logout
-		br
+		footer.footer
+			div.container
+				p.text-muted Place sticky footer content here.

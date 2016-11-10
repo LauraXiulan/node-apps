@@ -47,6 +47,8 @@ let Comment = db.define('comment', {
 User.hasMany(Post)
 User.hasMany(Comment)
 Post.hasMany(Comment)
+Post.belongsTo(User)
+Comment.belongsTo(Post)
 
 //Set express routes
 app.get('/ping', (req, res) => {
@@ -123,12 +125,13 @@ app.post('/createuser', (req, res) => {
 		email: email,
 		password: pw
 	})
-	res.send('Succesfully created profile!')	
+	res.redirect('/')	
 })
 
 //Create post
 app.get('/createpost', (req, res) => {
-	res.render('createpost')
+	let user = req.session.user
+	res.render('createpost', {user: user})
 })
 
 app.post('/createpost', (req, res) => {
@@ -143,6 +146,7 @@ app.post('/createpost', (req, res) => {
 
 //See all user posts
 app.get('/posts', (req, res) => {
+	let user = req.session.user
 	let userid = req.session.user.id
 	Post.findAll({
 		where: {
@@ -150,16 +154,17 @@ app.get('/posts', (req, res) => {
 		},
 		include: [Comment]
 	}).then(posts => {
-		res.render('posts', {post: posts})
+		res.render('posts', {post: posts, user: user})
 	})
 })
 
 //See all posts
 app.get('/allposts', (req, res) => {
+	let user = req.session.user
 	Post.findAll({
 		include: [Comment]
 	}).then(posts => {
-		res.render('allposts', {post: posts}) //Find out how to add the comments to the page...!
+		res.render('allposts', {post: posts, user: user}) //Find out how to add the comments to the page...!
 	})
 })
 

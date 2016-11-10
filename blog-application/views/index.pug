@@ -1,29 +1,60 @@
 html
 	head
-		script(src = '/jquery-3.1.1.min.js')
+		link(rel="stylesheet" href="./bootstrap/css/bootstrap.min.css" type="text/css")
+		link(rel="stylesheet" href="sticky-footer-navbar.css" type="text/css")
+		link(rel="stylesheet" href="style.css" type="text/css")
+		script(src="./jquery/jquery.min.js")
+		script(src="./bootstrap/js/bootstrap.min.js")
 		script(src = '/custom.js')
-		//- link(href = '/style.css' rel = 'stylesheet' type = 'text/css')
 	body.profile
-		h1 WELCOME!
-		//- br
-		//- img#lama(src = '/lama.jpg')
-		//- br
 		br
 		if user
-			a(href = '/profile') View profile
-			br
-			a(class = "button" href = "/createpost") Go to message form
-			br
-			a(class = "button" href = "/posts") See all your posts.
-			br
-			a(class = "button" href = "/allposts") See all posts.
-			br
-			a(href = '/logout') Leave Us
+			nav.navbar.navbar-default.navbar-fixed-top
+				div.container
+					div.navbar-header
+						button(type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar")
+							span.sr-only Toggle navigation
+							span.icon-bar
+							span.icon-bar
+							span.icon-bar
+							span.icon-bar
+							span.icon-bar
+							span.icon-bar
+						a.navbar-brand(href="/profile")= user.name
+					div#navbar.collapse.navbar-collapse
+						ul.nav.navbar-nav
+							li
+								a(href="/createpost") Post Message
+							li
+								a(href="/posts") Your Messages
+							li
+								a(href="/allposts") All Messages
+							li
+								a(href="/logout") Logout
+						form.form-inline.float-xs-right(style="margin-top: 7px;")
+							input.form-control(type="text" placeholder="Search")
+							button.btn.btn-outline.success(type="submit") Search
+			h2(style="text-align: center; margin-top: 100px;") You are already logged in! Click on your name in the navigation bar to see your profile!
 		else
-			form(action = '/login' method = 'post')
+			nav.navbar.navbar-default.navbar-fixed-top
+				div.navbar-header
+					ul.nav.navbar-nav
+						li
+							a(href="/createuser") Create Account
+				form.form-inline(style="margin-top: 8px; float: right; margin-right: 50px;")
+					input.form-control(type="text" placeholder="Search")
+					button.btn.btn-outline.success(type="submit") Search
+			br
+			br
+			h2(style="text-align: center; margin-top: 100px") Welcome! Please Login to see the content or create a new account!
+			br
+			form(action = '/login' method = 'post' style="margin-left: 36%")
 				label Email &nbsp;
 				input#email(type = 'email' name = 'email' required)
 				label &nbsp; Password &nbsp;
 				input#password(type = 'password' name = 'password' required)
 				input(type = 'submit' value = 'login' id = 'submit')
 		h2#error-message= message
+		footer.footer
+			div.container
+				p.text-muted Place sticky footer content here.
