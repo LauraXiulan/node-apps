@@ -28,8 +28,11 @@ html
           form.form-inline.float-xs-right(style="margin-top: 7px;")
             input.form-control(type="text" placeholder="Search")
             button.btn.btn-outline.success(type="submit") Search
+    img.welcome(src="bottle1.jpg")
+    br
+    br
     div.form
-      h2(style="margin-top: 100px;") Message form
+      h2 Message form
       p Type a nice message here!
       br
       form(action = "/createpost" method = "post")
@@ -41,7 +44,6 @@ html
             textarea(class = "form-control" id = "comment" name = "text")
             br
             input(type = "submit" value = "Post Message")
-    br
     footer.footer
       div.container
         p.text-muted Place sticky footer content here.

@@ -11,23 +11,27 @@ html
 					ul.nav.navbar-nav
 						li
 							a(href="/") Home
-				form.form-inline(style="margin-top: 8px; float: right; margin-right: 50px;")
+				form.form-inline.indexform
 					input.form-control(type="text" placeholder="Search")
 					button.btn.btn-outline.success(type="submit") Search
+		img.welcome(src="welcome.jpg")
 		div.container
-			section#content2
-				h1 New User
+			div#bodycontent
+				h1.title Create a New Account
 				br
-				form(action = "/createuser" method = "post")
-					input(type = "text" name = "name" placeholder = "Enter name" id = "name")
+				section#content2
+					h1 New User
 					br
-					input(type = "email" name = "email" placeholder = "Enter email" id = "email")
+					form(action = "/createuser" method = "post")
+						input(type = "text" name = "name" placeholder = "Enter name" id = "name")
+						br
+						input(type = "email" name = "email" placeholder = "Enter email" id = "email")
+						br
+						input(type = "password" name = "password" placeholder = "Create a password" id = "password")
+						br
+						input(type = "submit" value = "Create Account")
+						br
 					br
-					input(type = "password" name = "password" placeholder = "Create a password" id = "password")
-					br
-					input(type = "submit" value = "Create Account")
-					br
-				br
 		footer.footer
 			div.container
 				p.text-muted Place sticky footer content here.		

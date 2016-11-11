@@ -6,7 +6,7 @@ html
 		script(src="./jquery/jquery.min.js")
 		script(src="./bootstrap/js/bootstrap.min.js")
 		script(src = '/custom.js')
-	body.profile
+	body
 		br
 		if user
 			nav.navbar.navbar-default.navbar-fixed-top
@@ -31,24 +31,28 @@ html
 								a(href="/allposts") All Messages
 							li
 								a(href="/logout") Logout
-						form.form-inline.float-xs-right(style="margin-top: 7px;")
+						form.form-inline.float-xs-right.searchform
 							input.form-control(type="text" placeholder="Search")
 							button.btn.btn-outline.success(type="submit") Search
-			h2(style="text-align: center; margin-top: 100px;") You are already logged in! Click on your name in the navigation bar to see your profile!
+			br
+			img.welcome(src="welcome.jpg")
+			br
+			h2.index You are already logged in! Click on your name in the navigation bar to see your profile!
 		else
 			nav.navbar.navbar-default.navbar-fixed-top
 				div.navbar-header
 					ul.nav.navbar-nav
 						li
 							a(href="/createuser") Create Account
-				form.form-inline(style="margin-top: 8px; float: right; margin-right: 50px;")
+				form.form-inline.indexform
 					input.form-control(type="text" placeholder="Search")
 					button.btn.btn-outline.success(type="submit") Search
 			br
+			img.welcome(src="welcome.jpg")
 			br
-			h2(style="text-align: center; margin-top: 100px") Welcome! Please Login to see the content or create a new account!
+			h2.index Welcome! Please Login to see the content or create a new account!
 			br
-			form(action = '/login' method = 'post' style="margin-left: 36%")
+			form#loginform(action = '/login' method = 'post')
 				label Email &nbsp;
 				input#email(type = 'email' name = 'email' required)
 				label &nbsp; Password &nbsp;

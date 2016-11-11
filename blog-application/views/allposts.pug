@@ -39,29 +39,34 @@ html
 					form.form-inline.float-xs-right(style="margin-top: 7px;")
 						input.form-control(type="text" placeholder="Search")
 						button.btn.btn-outline.success(type="submit") Search
-		div.box(style="margin-top: 100px;")
+		img.welcome(src="bottle1.jpg")
+		br
+		br
+		div.box
 			h1 Messages
-			img(src = "lightning.jpg")
+			//- img(src = "lightning.jpg")
 			br
 			each thing in post
-				h2 #{thing.title}
-				p #{thing.body}
-				hr
-				- for(var i = 0; i < thing.comments.length; i++)
-					h2 #{thing.comments[i].title}
-					p #{thing.comments[i].body}
-				br
-				p#newcomment
-				form(action = "/allposts" method = "post")
-					div.form-group
-						label(for = "title") Title:
-						input(type = "text" class = "form-control" id = "title1" name = "title")
-					div.form-group
-						label(for = "comment") Comment:
-						textarea(class = "form-control" id = "comment1" name = "text")
-						br
-						input(type = "submit" value = "Post Comment" id = "commentbtn")
+				div.box1
+					h2 #{thing.title}
+					p #{thing.body}
+					hr.small
+					- for(var i = 0; i < thing.comments.length; i++)
+						h2 #{thing.comments[i].title}
+						p #{thing.comments[i].body}
 					br
+					p#newcomment
+					form(action = "/allposts" method = "post")
+						div.form-group
+							label(for = "title") Title:
+							input(type = "text" class = "form-control" id = "title1" name = "title")
+						div.form-group
+							label(for = "comment") Comment:
+							textarea(class = "form-control" id = "comment1" name = "text")
+							br
+							input(type = "submit" value = "Post Comment" id = "commentbtn")
+						br
+					hr
 		br
 		br
 		footer.footer

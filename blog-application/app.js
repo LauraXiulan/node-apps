@@ -135,13 +135,15 @@ app.get('/createpost', (req, res) => {
 })
 
 app.post('/createpost', (req, res) => {
+	let userid = req.session.user.id
 	let resultTitle = req.body.title
 	let resultText = req.body.text
 	Post.create({
 		title: resultTitle,
-		body: resultText
+		body: resultText,
+		userId: userid
 	})
-	res.send('Post successfully created!')
+	res.send("Successfully created new post!")
 })
 
 //See all user posts
@@ -152,7 +154,12 @@ app.get('/posts', (req, res) => {
 		where: {
 			userId: userid
 		},
-		include: [Comment]
+		include: [{
+			model: Comment
+			},{
+			model: User,
+			attributes: ['name']
+		}]
 	}).then(posts => {
 		res.render('posts', {post: posts, user: user})
 	})
