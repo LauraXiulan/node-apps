@@ -244,7 +244,7 @@ app.get('/logout', (req, res) => {
 //Sync with database
 //Test Data
 
-db.sync({force: true}).then(db => {
+db.sync({force: false}).then(db => {
 	console.log("Synced, yay!")
 	User.create({
 		name: 'Laura',
