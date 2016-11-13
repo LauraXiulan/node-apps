@@ -5,7 +5,16 @@ html
 		link(rel="stylesheet" href="style.css" type="text/css")
 		script(src="./jquery/jquery.min.js")
 		script(src="./bootstrap/js/bootstrap.min.js")
-	body.profile
+		script.
+			$(document).ready(function () {
+				$('#commentbtn').click(function (event) {
+					var comment = {
+						input: $('#commentbtn').val(),
+						id: $('#postId').val()
+					}
+				})
+			})
+	body.allposts
 		nav.navbar.navbar-default.navbar-fixed-top
 			div.container
 				div.navbar-header
@@ -28,19 +37,33 @@ html
 					form.form-inline.float-xs-right(style="margin-top: 7px;")
 						input.form-control(type="text" placeholder="Search")
 						button.btn.btn-outline.success(type="submit") Search
-		img.welcome(src="profile.jpg")
+		img.welcome(src="bottle1.jpg")
 		br
 		br
-		div#container
-			h2= user.name
+		div.box
+			h1 Comment
 			br
-			img#mainimg(src = '/duck.jpg')
-			br
-			h3= user.email
-			br
-			p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,	quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo	consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non	proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-			br
-			br
+			div.box1
+				each thing in comment
+					h4.commentname #{thing.user.name}
+					hr
+					h2 #{thing.title}
+					p #{thing.body}
+					br
+					p#newcomment
+						- for(var i = 0; i < thing.comments.length; i++)
+							p #{thing.comments[i].body} - #[strong #{thing.comments[i].user.name}]
+					br
+					form(action = "/specific" method = "post")
+						div.form-group 
+							label(for = "comment") Comment:
+							textarea(class = "form-control" id = "comment1" name = "text")
+							input(name = "postId" type = "hidden" id = "postId" value = thing.id)
+							br
+							input(type = "submit" value = "Post Comment" id = "commentbtn")
+						br
+		br
+		br
 		footer.footer
 			div.container
 				p.text-muted Copyright © Laura Kramer 2016

@@ -50,6 +50,10 @@ form.searchform {
     margin-top: 8px !important;
 }
 
+hr {
+    border-top: 1px solid black;
+}
+
 /* Add-user Page */
 
 body.createuser {
@@ -330,4 +334,9 @@ body.allposts {
 }
 
 
+/*Comment*/
 
+.commentname {
+    font-weight: bold;
+    margin-right: 60%;
+}

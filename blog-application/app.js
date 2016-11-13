@@ -39,7 +39,6 @@ let Post = db.define('post', {
 })
 
 let Comment = db.define('comment', {
-	title: sequelize.STRING,
 	body: sequelize.STRING
 })
 
@@ -49,16 +48,10 @@ User.hasMany(Comment)
 Post.hasMany(Comment)
 Post.belongsTo(User)
 Comment.belongsTo(Post)
+Comment.belongsTo(User)
 
 //Set express routes
-app.get('/ping', (req, res) => {
-	res.send('Pong')
-})
-
 //Homepage
-// app.get('/', (req, res) => {
-// 	res.send('Welcome!')
-// })
 
 app.get('/', (req, res) => {
 	res.render('index', {
@@ -131,7 +124,8 @@ app.post('/createuser', (req, res) => {
 //Create post
 app.get('/createpost', (req, res) => {
 	let user = req.session.user
-	res.render('createpost', {user: user})
+	let message = req.query.message
+	res.render('createpost', {user: user, message: message})
 })
 
 app.post('/createpost', (req, res) => {
@@ -143,7 +137,7 @@ app.post('/createpost', (req, res) => {
 		body: resultText,
 		userId: userid
 	})
-	res.send("Successfully created new post!")
+	res.redirect('/createpost?message=' + encodeURIComponent("Successfully created message!"))
 })
 
 //See all user posts
@@ -155,10 +149,10 @@ app.get('/posts', (req, res) => {
 			userId: userid
 		},
 		include: [{
-			model: Comment
-			},{
-			model: User,
-			attributes: ['name']
+			model: Comment,
+			include: [User]
+		},{
+			model: User
 		}]
 	}).then(posts => {
 		res.render('posts', {post: posts, user: user})
@@ -169,21 +163,74 @@ app.get('/posts', (req, res) => {
 app.get('/allposts', (req, res) => {
 	let user = req.session.user
 	Post.findAll({
-		include: [Comment]
+		include: [{
+			model: Comment,
+			include: [User]
+		},{
+			model: User
+		}]
 	}).then(posts => {
-		res.render('allposts', {post: posts, user: user}) //Find out how to add the comments to the page...!
+		res.render('allposts', {post: posts, user: user})
 	})
 })
 
-app.post('/comment', (req, res) => {
-	console.log(req.body)
-	// res.send({data: input})
+//Go to specific post
+app.post('/allposts', (req, res) => {
+	let user = req.session.user
+	let comment = req.body
+	Post.findAll({
+		where: {
+			id: comment.id
+		},
+		include: [{
+			model: Comment,
+			include: [User]
+		},{
+			model: User
+		}]
+	}).then(comments => {
+		res.render('comment', {comment: comments, user: user})
+	})
+})
+
+//Comment on specific post
+app.get('/specific', (req, res) => {
+	let user = req.session.user
+	Post.findAll({
+		where: {
+			id: req.body
+		},
+		include: [Comment, User]
+	}).then(posts => {
+		res.render('comment', {comment: posts, user: user})
+	})
+})
+
+app.post('/specific', (req, res) => {
+	let userId = req.session.user.id
+	let user = req.session.user
+	Comment.create({
+		body: req.body.text,
+		userId: userId,
+		postId: req.body.postId
+	}).then(comments => {
+		Post.findAll({
+			where: {
+				id: comments.postId
+			},
+			include: [{
+				model: Comment,
+				include: [User]
+			},{
+				model: User
+			}]
+		}).then(comments => {
+			res.render('comment', {comment: comments, user: user})
+		})
+	})
 })
 
 //Logout page
-// app.get('/logout', (req, res) => {
-// 	res.send('You are successfully logged out!')
-// })
 
 app.get('/logout', (req, res) => {
 	req.session.destroy((err) => {
@@ -193,7 +240,9 @@ app.get('/logout', (req, res) => {
 		res.redirect('/?message=' + encodeURIComponent("Successfully logged out."))
 	})
 })
+
 //Sync with database
+//Test Data
 
 db.sync({force: true}).then(db => {
 	console.log("Synced, yay!")
@@ -208,20 +257,14 @@ db.sync({force: true}).then(db => {
 		password: 'cat'
 	})
 	Post.create({
-		title: 'KING BOB',
-		body: 'SUPER MEGA UKULELE',
-		userId: 1
-	})
-	Comment.create({
-		title: 'Cool',
-		body: 'Your post is funny!',
-		userId: 2,
-		postId: 1
-	})
-	Post.create({
 		title: 'Hello!',
 		body: 'Hey there how are you all doing?',
 		userId: 2
+	})
+	Comment.create({
+		body: 'Great! What about you?',
+		userId: 1,
+		postId: 1
 	})
 })
 

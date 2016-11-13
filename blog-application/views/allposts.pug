@@ -5,17 +5,6 @@ html
 		link(rel="stylesheet" href="style.css" type="text/css")
 		script(src="./jquery/jquery.min.js")
 		script(src="./bootstrap/js/bootstrap.min.js")
-		script.
-			$(document).ready(function () {
-				$('#comment').click(function (event) {
-					let comment = {
-						input: $('#comment').val()
-					}
-					$.post('/comment', comment, function(res) {
-						$('#newcomment').append(res.data[i].title + "\n" + res.data[i].text + "<br>")
-					})
-				})
-			})
 	body.allposts
 		nav.navbar.navbar-default.navbar-fixed-top
 			div.container
@@ -43,32 +32,23 @@ html
 		br
 		br
 		div.box
-			h1 Messages
-			//- img(src = "lightning.jpg")
+			h1 All Messages
 			br
 			each thing in post
 				div.box1
+					h4.commentname #{thing.user.name}
+					hr
 					h2 #{thing.title}
 					p #{thing.body}
-					hr.small
-					- for(var i = 0; i < thing.comments.length; i++)
-						h2 #{thing.comments[i].title}
-						p #{thing.comments[i].body}
+					br
+					form(method="post" action="/allposts")
+						button#commentbutton(type="submit" name="id" value=thing.id) Comment
 					br
 					p#newcomment
-					form(action = "/allposts" method = "post")
-						div.form-group
-							label(for = "title") Title:
-							input(type = "text" class = "form-control" id = "title1" name = "title")
-						div.form-group
-							label(for = "comment") Comment:
-							textarea(class = "form-control" id = "comment1" name = "text")
-							br
-							input(type = "submit" value = "Post Comment" id = "commentbtn")
-						br
-					hr
+					- for(var i = 0; i < thing.comments.length; i++)
+							p #{thing.comments[i].body} - #[strong #{thing.comments[i].user.name}]
 		br
 		br
 		footer.footer
 			div.container
-				p.text-muted Place sticky footer content here.
+				p.text-muted Copyright © Laura Kramer 2016
