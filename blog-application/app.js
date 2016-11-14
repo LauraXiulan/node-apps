@@ -5,6 +5,7 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const session = require('express-session')
 const app = express()
+const bcrypt = require('bcrypt-nodejs')
 
 let db = new sequelize('blog', process.env.POSTGRES_USER, process.env.POSTGRES_PASSWORD, {
 	server: 'localhost',
@@ -79,13 +80,16 @@ app.post('/login', bodyParser.urlencoded({extended: true}), (req, res) => {
 			email: req.body.email
 		}
 	}).then((user) => {
-		if(user !== null && req.body.password === user.password) {
-			req.session.user = user
-			res.redirect('/profile')
-		}
-		else {
-			res.redirect('/?message=' + encodeURIComponent("Invalid email or password."))
-		}
+		let hash = user.password
+		bcrypt.compare(req.body.password, hash, (err, response) => {
+			if(user !== null && response == true) {
+				req.session.user = user
+				res.redirect('/profile')
+			}
+			else {
+				res.redirect('/?message=' + encodeURIComponent("Invalid email or password."))
+			}
+		})
 	}, (err) => {
 		res.redirect('/?message=' + encodeURIComponent("Invalid email or password."))
 	})
@@ -113,10 +117,12 @@ app.post('/createuser', (req, res) => {
 	let userName = req.body.name
 	let email = req.body.email
 	let pw = req.body.password
-	User.create({
-		name: userName,
-		email: email,
-		password: pw
+	bcrypt.hash(pw, null, null, (err, hash) => {
+		User.create({
+			name: userName,
+			email: email,
+			password: hash
+		})
 	})
 	res.redirect('/')	
 })
@@ -244,27 +250,24 @@ app.get('/logout', (req, res) => {
 //Sync with database
 //Test Data
 
-db.sync({force: false}).then(db => {
+db.sync({force: true}).then(db => {
 	console.log("Synced, yay!")
-	User.create({
-		name: 'Laura',
-		email: 'blabla@bla',
-		password: 'banana'
-	})
-	User.create({
-		name: 'Esther',
-		email: 'kitten@cute',
-		password: 'cat'
-	})
-	Post.create({
-		title: 'Hello!',
-		body: 'Hey there how are you all doing?',
-		userId: 2
-	})
-	Comment.create({
-		body: 'Great! What about you?',
-		userId: 1,
-		postId: 1
+	bcrypt.hash('banana', null, null, (err, hash) => {
+		User.create({
+			name: 'Laura',
+			email: 'blabla@bla',
+			password: hash
+		})
+		Post.create({
+			title: 'Hello!',
+			body: 'Hey there how are you all doing?',
+			userId: 1
+		})
+		Comment.create({
+			body: 'Commenting on my own post, hahaha!',
+			userId: 1,
+			postId: 1
+		})
 	})
 })
 
