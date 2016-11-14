@@ -22,7 +22,7 @@ html
 				section#content2
 					h1 New User
 					br
-					form(action = "/createuser" method = "post")
+					form(name = "createuser" action = "/createuser" method = "post" onsubmit = "return validateForm()")
 						input(type = "text" name = "name" placeholder = "Enter name" id = "name")
 						br
 						input(type = "email" name = "email" placeholder = "Enter email" id = "email")

@@ -117,14 +117,41 @@ app.post('/createuser', (req, res) => {
 	let userName = req.body.name
 	let email = req.body.email
 	let pw = req.body.password
-	bcrypt.hash(pw, null, null, (err, hash) => {
-		User.create({
-			name: userName,
-			email: email,
-			password: hash
+	if(userName.length === 0) {
+		res.redirect('/createuser?message=' + encodeURIComponent("Please fill out your name."))
+		return
+	}
+	if(email.length === 0) {
+		res.redirect('/createuser?message=' + encodeURIComponent("Please fill out your email."))
+		return
+	}
+	if(pw.length === 0) {
+		res.redirect('/createuser?message=' + encodeURIComponent("Please choose a password."))
+		return
+	}
+	User.findOne({
+		where: {
+			$or: [{
+			name: userName
+		},{
+			email: email 
+		}]
+	}
+	}).then(users => {
+		bcrypt.hash(pw, null, null, (err, hash) => {
+			if(users == null){
+				User.create({
+					name: userName,
+					email: email,
+					password: hash
+				})
+				res.redirect('/')
+			} else {
+				res.redirect('/createuser?message=' + encodeURIComponent("Username or email already in use."))
+			}
 		})
 	})
-	res.redirect('/')	
+		
 })
 
 //Create post
@@ -250,7 +277,7 @@ app.get('/logout', (req, res) => {
 //Sync with database
 //Test Data
 
-db.sync({force: false}).then(db => {
+db.sync({force: true}).then(db => {
 	console.log("Synced, yay!")
 	bcrypt.hash('banana', null, null, (err, hash) => {
 		User.create({
