@@ -1,3 +1,4 @@
+//Login page
 $(document).ready(function () {
 	$('#submit').click(function(event) {
 		if($('#email').val().trim().length === 0 || $('#password').val().trim().length === 0) {
@@ -6,3 +7,13 @@ $(document).ready(function () {
 		}
 	})
 })
+
+//Comment page
+$(document).ready(function () {
+				$('#commentbtn').click(function (event) {
+					var comment = {
+						input: $('#commentbtn').val(),
+						id: $('#postId').val()
+					}
+				})
+			})
