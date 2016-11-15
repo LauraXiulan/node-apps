@@ -292,7 +292,7 @@ app.get('/logout', (req, res) => {
 //Sync with database
 //Test Data
 
-db.sync({force: true}).then(db => {
+db.sync({force: false}).then(db => {
 	console.log("Synced, yay!")
 	bcrypt.hash('banana', null, null, (err, hash) => {
 		User.create({
