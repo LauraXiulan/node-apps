@@ -54,6 +54,10 @@ hr {
     border-top: 1px solid black;
 }
 
+#message {
+    margin-bottom: 60px;
+}
+
 /* Add-user Page */
 
 body.createuser {
@@ -153,6 +157,9 @@ h1.title {
     background-position: 10px 10px !important; 
 }
 #password {
+    background-position: 10px 10px !important;
+}
+#passwordConfirm {
     background-position: 10px 10px !important;
 }
 #email { 

@@ -110,13 +110,15 @@ app.get('/profile', (req, res) => {
 
 //Create new user
 app.get('/createuser', (req, res) => {
-	res.render('createuser')
+	let message = req.query.message
+	res.render('createuser', {message: message})
 })
 
 app.post('/createuser', (req, res) => {
 	let userName = req.body.name
 	let email = req.body.email
 	let pw = req.body.password
+	let pwConfirm = req.body.passwordConfirm
 	if(userName.length === 0) {
 		res.redirect('/createuser?message=' + encodeURIComponent("Please fill out your name."))
 		return
@@ -125,8 +127,12 @@ app.post('/createuser', (req, res) => {
 		res.redirect('/createuser?message=' + encodeURIComponent("Please fill out your email."))
 		return
 	}
-	if(pw.length === 0) {
-		res.redirect('/createuser?message=' + encodeURIComponent("Please choose a password."))
+	if(pw.length < 8) {
+		res.redirect('/createuser?message=' + encodeURIComponent("Password too short."))
+		return
+	}
+	if(pw !== pwConfirm) {
+		res.redirect('/createuser?message=' + encodeURIComponent("Password does not match."))
 		return
 	}
 	User.findOne({
