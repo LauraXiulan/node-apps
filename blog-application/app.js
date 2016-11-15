@@ -119,12 +119,21 @@ app.post('/createuser', (req, res) => {
 	let email = req.body.email
 	let pw = req.body.password
 	let pwConfirm = req.body.passwordConfirm
+	let firstChar = userName.substr(0, 1)
 	if(userName.length === 0) {
 		res.redirect('/createuser?message=' + encodeURIComponent("Please fill out your name."))
 		return
 	}
+	if(!firstChar.match(/[a-zA-Z]/)) {
+		res.redirect('/createuser?message=' + encodeURIComponent("The first letter of your username needs to be alphabetic."))
+		return
+	}
 	if(email.length === 0) {
 		res.redirect('/createuser?message=' + encodeURIComponent("Please fill out your email."))
+		return
+	}
+	if(!email.match(/[@]/)) {
+		res.redirect('/createuser?message=' + encodeURIComponent("Please provide a valid emailadress."))
 		return
 	}
 	if(pw.length < 8) {

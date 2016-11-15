@@ -5,6 +5,7 @@ html
 		link(rel="stylesheet" href="style.css" type="text/css")
 		script(src="./jquery/jquery.min.js")
 		script(src="./bootstrap/js/bootstrap.min.js")
+		script(src="custom.js")
 	body.createuser
 		nav.navbar.navbar-default.navbar-fixed-top
 				div.navbar-header
@@ -22,14 +23,14 @@ html
 				section#content2
 					h1 New User
 					br
-					form(name = "createuser" action = "/createuser" method = "post" onsubmit = "return validateForm()")
-						input(type = "text" name = "name" placeholder = "Enter name" id = "name")
+					form(name = "createuser" action = "/createuser" method = "post")
+						input(type = "text" name = "name" placeholder = "Enter name (start with alphabetic)" id = "name" pattern = "^[a-zA-Z].*" onchange = "validate()" required)
 						br
-						input(type = "email" name = "email" placeholder = "Enter email" id = "email")
+						input(type = "email" name = "email" placeholder = "Enter email" id = "email" required)
 						br
-						input(type = "password" name = "password" placeholder = "Create a password" id = "password")
+						input(type = "password" name = "password" placeholder = "Create a password" id = "password" minlength = "8" required)
 						br
-						input(type = "password" name = "passwordConfirm" placeholder = "Confirm your password" id = "passwordConfirm")
+						input(type = "password" name = "passwordConfirm" placeholder = "Confirm your password" id = "passwordConfirm" minlength = "8" required)
 						br
 						input(type = "submit" value = "Create Account")
 						br
@@ -41,3 +42,6 @@ html
 		footer.footer
 			div.container
 				p.text-muted Copyright © Laura Kramer 2016		
+
+
+//- //  
