@@ -1,0 +1,220 @@
+.navbar-fixed-top {
+  background: linear-gradient(141deg, #0fb8ad 0%, #1fc8db 51%, #5cb5e8 75%); }
+  .navbar-fixed-top a {
+    font-size: 18px;
+    color: white !important; }
+  .navbar-fixed-top .form-inline.float-xs-right {
+    margin-top: 8px; }
+  .navbar-fixed-top .indexform {
+    float: right;
+    margin-right: 50px;
+    margin-top: 8px; }
+
+footer {
+  background: #0fb8ad !important; }
+  footer .text-muted {
+    color: white; }
+
+/* General/Mainpage */
+body {
+  background-color: #E7F6F5;
+  font-family: 'Open Sans', sans-serif;
+  text-align: center; }
+  body li {
+    font-size: 16px; }
+  body hr {
+    border-top: 1px solid black; }
+  body img.welcome {
+    width: 100%;
+    height: auto; }
+  body h2.index {
+    text-align: center;
+    margin-top: 100px; }
+  body #loginform {
+    margin: auto; }
+  body #error-message {
+    margin-bottom: 60px; }
+
+/* Add-user Page */
+body.createuser {
+  font: 14px Arial;
+  margin: 0 auto;
+  padding-top: 50px;
+  position: relative; }
+  body.createuser .container {
+    margin: 25px auto;
+    position: relative;
+    width: 900px; }
+    body.createuser .container .title {
+      margin: auto;
+      text-align: center;
+      text-shadow: 2px 1px lightslategrey;
+      color: black !important; }
+    body.createuser .container #content2 {
+      background: -webkit-linear-gradient(top, #f8f8f8 0%, #f9f9f9 100%);
+      box-shadow: 0 1px 0 #fff inset;
+      border: 1px solid #c4c6ca;
+      margin: 0 auto;
+      padding: 25px 0 0;
+      position: relative;
+      text-align: center;
+      text-shadow: 0 1px 0 #fff;
+      width: 400px; }
+      body.createuser .container #content2 h1 {
+        color: #7E7E7E;
+        font: bold 25px Helvetica, Arial, sans-serif;
+        letter-spacing: -0.05em;
+        line-height: 20px;
+        margin: 10px 0 30px; }
+        body.createuser .container #content2 h1 :before, body.createuser .container #content2 h1 :after {
+          content: "";
+          height: 1px;
+          position: absolute;
+          margin: 10px 0 30px;
+          width: 27%; }
+        body.createuser .container #content2 h1 :after {
+          background: -webkit-linear-gradient(left, #7e7e7e 0%, white 100%);
+          right: 0; }
+        body.createuser .container #content2 h1 :before {
+          background: -webkit-linear-gradient(left, #7e7e7e 0%, white 100%);
+          left: 0; }
+      body.createuser .container #content2 :after, body.createuser .container #content2 :before {
+        background: -webkit-linear-gradient(top, #f8f8f8 0%, #f9f9f9 100%);
+        border: 1px solid #c4c6ca;
+        content: "";
+        display: block;
+        height: 100%;
+        left: -1px;
+        position: absolute;
+        width: 100%; }
+      body.createuser .container #content2 :after {
+        transform: rotate(2deg);
+        top: 0;
+        z-index: -1; }
+      body.createuser .container #content2 :before {
+        transform: rotate(-3deg);
+        top: 0;
+        z-index: -2; }
+      body.createuser .container #content2 form {
+        margin: 0 20px;
+        position: relative; }
+        body.createuser .container #content2 form input[type="text"], body.createuser .container #content2 form input[type="email"], body.createuser .container #content2 form input[type="password"] {
+          border-radius: 3px;
+          box-shadow: 0 1px 0 #fff, 0 -2px 5px rgba(0, 0, 0, 0.08) inset;
+          transition: all 0.5s ease;
+          background: snow url(http://cssdeck.com/uploads/media/items/8/8bcLQqF.png) no-repeat;
+          border: 1px solid #c8c8c8;
+          color: #777;
+          font: 13px Helvetica, Arial, sans-serif;
+          margin: 0 0 10px;
+          padding: 15px 10px 15px 40px;
+          width: 80%; }
+          body.createuser .container #content2 form input[type="text"] #name, body.createuser .container #content2 form input[type="email"] #name, body.createuser .container #content2 form input[type="password"] #name {
+            background-position: 10px 10px !important; }
+          body.createuser .container #content2 form input[type="text"] #password, body.createuser .container #content2 form input[type="email"] #password, body.createuser .container #content2 form input[type="password"] #password {
+            background-position: 10px 10px !important; }
+          body.createuser .container #content2 form input[type="text"] #passwordConfirm, body.createuser .container #content2 form input[type="email"] #passwordConfirm, body.createuser .container #content2 form input[type="password"] #passwordConfirm {
+            background-position: 10px 10px !important; }
+          body.createuser .container #content2 form input[type="text"] #email, body.createuser .container #content2 form input[type="email"] #email, body.createuser .container #content2 form input[type="password"] #email {
+            background-position: 10px 10px !important; }
+        body.createuser .container #content2 form input[type="submit"] {
+          background: -webkit-linear-gradient(top, #fee79a 0%, #fec151 100%);
+          border-radius: 30px;
+          box-shadow: 0 1px 0 rgba(255, 255, 255, 0.8) inset;
+          border: 1px solid #D69E31;
+          color: #85592e;
+          cursor: pointer;
+          font: bold 15px Helvetica, Arial, sans-serif;
+          height: 35px;
+          margin: 20px 0 20px 0;
+          padding: 0 5px;
+          position: relative;
+          text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+          width: 120px; }
+
+/*Profile */
+#container, #container #mainimg {
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto; }
+  #container #mainimg {
+    height: auto; }
+  #container h3, #container #mainimg h3 {
+    font-style: italic; }
+
+/*Create post page and allposts page */
+body.createpost, body.allposts {
+  font-size: 11px;
+  font-family: 'Open Sans', sans-serif;
+  color: black;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto; }
+  body.createpost h1, body.allposts h1 {
+    font-size: 30px;
+    font-weight: bold;
+    margin-top: 5px;
+    text-shadow: 2px 1px lightslategrey;
+    color: black; }
+  body.createpost h2, body.allposts h2 {
+    font-size: 22px; }
+  body.createpost p, body.allposts p {
+    margin-top: 15px;
+    font-size: 18px; }
+  body.createpost label, body.allposts label {
+    font-size: 16px; }
+  body.createpost hr, body.allposts hr {
+    width: 70%;
+    color: black; }
+  body.createpost .box, body.allposts .box {
+    margin: 20px auto;
+    width: 700px;
+    min-height: 150px;
+    padding: 10px;
+    position: relative; }
+  body.createpost #title, body.allposts #title {
+    width: 600px; }
+  body.createpost #comment, body.allposts #comment {
+    width: 600px;
+    height: 200px; }
+
+.box1 {
+  margin: 20px auto;
+  width: 600px;
+  min-height: 150px;
+  padding: 10px;
+  position: relative;
+  background: -webkit-gradient(linear, 0% 20%, 0% 92%, from(#f3f3f3), to(#fff), color-stop(0.1, #f3f3f3));
+  border-top: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+  -webkit-border-bottom-right-radius: 60px 60px;
+  -webkit-box-shadow: -1px 2px 2px rgba(0, 0, 0, 0.2); }
+  .box1 :before {
+    content: '';
+    width: 25px;
+    height: 20px;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    -webkit-border-bottom-right-radius: 30px;
+    -webkit-box-shadow: -2px -2px 5px rgba(0, 0, 0, 0.3);
+    -webkit-transform: rotate(-20deg) skew(-40deg, -3deg) translate(-13px, -13px); }
+  .box1 :after {
+    content: '';
+    z-index: -1;
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.2);
+    display: inline-block;
+    -webkit-box-shadow: 20px 20px 8px rgba(0, 0, 0, 0.2);
+    -webkit-transform: rotate(0deg) translate(-45px, -20px) skew(20deg); }
+  .box1 .commentname {
+    font-weight: bold;
+    margin-right: 60%; }
+  .box1 #comment1 {
+    margin: auto;
+    width: 90%;
+    height: 50px; }

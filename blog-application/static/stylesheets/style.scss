@@ -1,0 +1,262 @@
+//Main SASS File
+@import 'navFooter';
+
+$textColor: black;
+$textAlign: center;
+$inputPosition: 10px 10px !important;
+$content2Backgr1: -webkit-linear-gradient(top,  rgba(248,248,248,1) 0%,rgba(249,249,249,1) 100%);
+$content2Backgr2: -webkit-linear-gradient(left,  rgba(126,126,126,1) 0%,rgba(255,255,255,1) 100%);
+
+/* General/Mainpage */
+body {
+    background-color: #E7F6F5;
+    font-family: 'Open Sans', sans-serif;
+    text-align: $textAlign;
+    li {
+        font-size: 16px;
+    }
+    hr {
+        border-top: 1px solid black;
+    }
+    img.welcome {
+        width: 100%;
+        height: auto;
+    }
+    h2.index {
+        text-align: $textAlign;
+        margin-top: 100px;
+    }
+    #loginform {
+        margin: auto;
+    }
+    #error-message {
+        margin-bottom: 60px;
+    }
+}
+
+/* Add-user Page */
+
+body.createuser {
+    font: 14px Arial;
+    margin: 0 auto;
+    padding-top: 50px;
+    position: relative;
+    .container {
+        margin: 25px auto;
+        position: relative;
+        width: 900px;
+        .title {
+            margin: auto;
+            text-align: $textAlign;
+            text-shadow: 2px 1px lightslategrey ;
+            color: $textColor !important;
+        }
+        #content2 {
+            background: $content2Backgr1;
+            box-shadow: 0 1px 0 #fff inset;
+            border: 1px solid #c4c6ca;
+            margin: 0 auto;
+            padding: 25px 0 0;
+            position: relative;
+            text-align: $textAlign;
+            text-shadow: 0 1px 0 #fff;
+            width: 400px;
+            h1 {
+                color: #7E7E7E;
+                font: bold 25px Helvetica, Arial, sans-serif;
+                letter-spacing: -0.05em;
+                line-height: 20px;
+                margin: 10px 0 30px;
+                :before, :after {
+                    content: "";
+                    height: 1px;
+                    position: absolute;
+                    margin: 10px 0 30px;
+                    width: 27%;
+                }
+                :after {
+                    background: $content2Backgr2;
+                    right: 0;
+                }
+                :before {
+                    background: $content2Backgr2;
+                    left: 0;
+                }
+            }
+            :after, :before {
+                background: $content2Backgr1;
+                border: 1px solid #c4c6ca;
+                content: "";
+                display: block;
+                height: 100%;
+                left: -1px;
+                position: absolute;
+                width: 100%;
+            }
+            :after {
+                transform: rotate(2deg);
+                top: 0;
+                z-index: -1;
+            }
+            :before {
+                transform: rotate(-3deg);
+                top: 0;
+                z-index: -2;
+            }
+            form {
+                margin: 0 20px;
+                position: relative;
+                input[type="text"], input[type="email"], input[type="password"] {
+                    border-radius: 3px;
+                    box-shadow: 0 1px 0 #fff, 0 -2px 5px rgba(0,0,0,0.08) inset;
+                    transition: all 0.5s ease;
+                    background: snow url(http://cssdeck.com/uploads/media/items/8/8bcLQqF.png) no-repeat;
+                    border: 1px solid #c8c8c8;
+                    color: #777;
+                    font: 13px Helvetica, Arial, sans-serif;
+                    margin: 0 0 10px;
+                    padding: 15px 10px 15px 40px;
+                    width: 80%;
+                    #name { 
+                        background-position: $inputPosition; 
+                    }
+                    #password {
+                        background-position: $inputPosition;
+                    }
+                    #passwordConfirm {
+                        background-position: $inputPosition;
+                    }
+                    #email { 
+                        background-position: $inputPosition;
+                    }             
+                }
+                input[type="submit"] {
+                    background: -webkit-linear-gradient(top,  rgba(254,231,154,1) 0%,rgba(254,193,81,1) 100%);
+                    border-radius: 30px;
+                    box-shadow: 0 1px 0 rgba(255,255,255,0.8) inset;
+                    border: 1px solid #D69E31;
+                    color: #85592e;
+                    cursor: pointer;
+                    font: bold 15px Helvetica, Arial, sans-serif;
+                    height: 35px;
+                    margin: 20px 0 20px 0;
+                    padding: 0 5px;
+                    position: relative;
+                    text-shadow: 0 1px 0 rgba(255,255,255,0.5);
+                    width: 120px;
+                }
+            }
+        }
+    }
+}
+
+/*Profile */
+
+#container {
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+    #mainimg {
+    @extend #container;
+        height: auto;
+    }
+    h3 {
+        font-style: italic;
+    }
+}
+
+/*Create post page and allposts page */
+body.createpost, body.allposts {
+    font-size: 11px;
+    font-family: 'Open Sans', sans-serif;
+    color: $textColor ;
+    text-align: $textAlign; 
+    margin-left: auto;
+    margin-right: auto;
+    h1 {
+        font-size: 30px;
+        font-weight: bold;
+        margin-top: 5px; 
+        text-shadow: 2px 1px lightslategrey;
+        color: $textColor;
+    }
+    h2 {
+        font-size: 22px;
+    }
+    p {
+        margin-top: 15px;
+        font-size: 18px;
+    }
+    label {
+        font-size: 16px;
+    }
+    hr {
+        width: 70%;
+        color: black;
+    }
+    .box{
+        margin: 20px auto;
+        width: 700px;
+        min-height: 150px;
+        padding: 10px;
+        position:relative;
+    }
+    #title {
+        width: 600px;
+    }
+    #comment {
+        width: 600px;
+        height: 200px;
+    }
+}
+
+//Comments page
+.box1{
+    margin: 20px auto;
+    width: 600px;
+    min-height: 150px;
+    padding: 10px;
+    position:relative;
+    background: -webkit-gradient(linear, 0% 20%, 0% 92%, from(#f3f3f3), to(#fff), color-stop(.1,#f3f3f3));
+    border-top: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+    -webkit-border-bottom-right-radius: 60px 60px;
+    -webkit-box-shadow: -1px 2px 2px rgba(0, 0, 0, 0.2);
+    :before {
+        content:'';    
+        width: 25px;
+        height: 20px;
+        position: absolute;
+        bottom:0;
+        right:0;
+        -webkit-border-bottom-right-radius: 30px;
+        -webkit-box-shadow: -2px -2px 5px rgba(0, 0, 0, 0.3);
+        -webkit-transform: rotate(-20deg)
+                            skew(-40deg,-3deg)
+                                translate(-13px,-13px); 
+    }
+    :after {
+        content: '';
+        z-index: -1;
+        width: 100px;
+        height: 100px;
+        position:absolute;
+        bottom:0;
+        right:0;
+        background: rgba(0, 0, 0, 0.2);
+        display: inline-block;
+        -webkit-box-shadow: 20px 20px 8px rgba(0, 0, 0, 0.2);
+        -webkit-transform: rotate(0deg)
+                            translate(-45px,-20px)
+                               skew(20deg);    
+    }
+    .commentname {
+        font-weight: bold;
+        margin-right: 60%;
+    }
+    #comment1 {
+        margin: auto;
+        width: 90%;
+        height: 50px;
+    }
+}

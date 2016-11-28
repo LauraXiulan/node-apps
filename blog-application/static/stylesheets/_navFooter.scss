@@ -1,0 +1,25 @@
+//Navigation Bar and Footer
+$navFooterColor: white;
+
+.navbar-fixed-top {
+        background: linear-gradient(141deg, #0fb8ad 0%, #1fc8db 51%, #5cb5e8 75%);
+        a {
+            font-size: 18px;
+            color: $navFooterColor !important;
+        }
+        .form-inline.float-xs-right {
+            margin-top: 8px;
+        }
+        .indexform {
+            float: right;
+            margin-right: 50px;
+            margin-top: 8px;
+        }
+    }
+
+footer {
+        background: #0fb8ad !important;
+        .text-muted {
+            color: $navFooterColor;
+        }
+    }
